@@ -1,6 +1,5 @@
 import type {NextPage} from 'next';
 import { ShopLayout } from '../components/layouts';
-import '../../styles/globals.css'
 
 
 const Home: NextPage = () => {
