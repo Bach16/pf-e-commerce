@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 const Home: NextPage = () => {
   return(
     <ShopLayout title={'E-Commerce'} pageDescription={'E-Commerce Clothes'}>
+
     </ShopLayout>
   )
 }
