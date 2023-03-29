@@ -47,7 +47,10 @@ const {Admin, Categories, Consumer, Order, Product} = sequelize.models
 Product.belongsToMany(Order, { through: "OrderDetail", timestamps: false })
 Order.belongsToMany(Product, { through: "OrderDetail", timestamps: false })
 
+Categories.hasMany(Product, { through: "ProductCategorie", timestamps: false })
 
+Consumer.hasMany(Order)
+Admin.hasMany(Order)
 
 
 module.exports = {
