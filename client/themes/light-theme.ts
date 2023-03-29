@@ -9,7 +9,10 @@ export const lightTheme = createTheme({
       main: '#1E1E1E'
     },
     secondary: {
-      main: '#3A64D8'
+      main: '#725AC1'
+    },
+    info: {
+      main: '#fff'
     }
   },
   components: {
@@ -54,6 +57,7 @@ export const lightTheme = createTheme({
         variant: 'contained',
         size: 'small',
         disableElevation: true,
+        color:"info"
       },
       styleOverrides: {
         root: {
@@ -61,7 +65,7 @@ export const lightTheme = createTheme({
           boxShadow: 'none',
           borderRadius: 10,
           ":hover": {
-            backgroundColor: 'rgba(0,0,0,0.05)',
+            backgroundColor: '#8D86C9',
             transition: 'all 0.3s ease-in-out'
           }
         }
