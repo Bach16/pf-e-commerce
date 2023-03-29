@@ -3,8 +3,12 @@ import NextLink from 'next/link'
 import Typography from '@mui/material/Typography';
 import { Menu, SearchOutlined, ShoppingCart, ShoppingCartOutlined } from '@mui/icons-material';
 import { Badge } from '@mui/material';
+import { useContext } from 'react';
+import { UiContext } from '../../context'
 
 export const NavBar = () => {
+
+    const {toggleSideMenu} = useContext(UiContext)
   return (
     <AppBar >
         <Toolbar >
@@ -30,7 +34,7 @@ export const NavBar = () => {
                 </Link>
             </NextLink>
 
-            <IconButton color='primary'>
+            <IconButton color='primary' onClick={toggleSideMenu}>
                 <Menu/>
             </IconButton>
         </Toolbar>

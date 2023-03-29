@@ -1,13 +1,18 @@
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
 import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, ConfirmationNumberOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
+import { useContext } from "react"
+import { UiContext } from "../../context"
 
 
 export const SideMenu = () => {
+
+    const {isMenuOpen, toggleSideMenu} = useContext(UiContext)
   return (
     <Drawer
-        open={ true }
+        open={ isMenuOpen}
         anchor='right'
         sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
+        onClose={toggleSideMenu}
     >
         <Box sx={{ width: 250, paddingTop: 5 }}>
             
