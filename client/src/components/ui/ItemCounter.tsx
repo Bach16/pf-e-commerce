@@ -13,7 +13,7 @@ const ItemCounter:FC<Props> = () => {
         <IconButton>
           <RemoveCircleOutline/>
         </IconButton>
-        <Typography xs={{ width:40, textAlign:"center"}}>1</Typography>
+        <Typography xs={{ width:40, textAlign:"center"}} component={null}>1</Typography>
         <IconButton>
           <AddCircleOutline/>
         </IconButton>

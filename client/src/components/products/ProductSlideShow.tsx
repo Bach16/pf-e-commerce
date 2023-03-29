@@ -10,7 +10,7 @@ interface Props {
 
 const ProductSlideShow: FC<Props> = ({images}) => {
   return (
-    <Slide children
+    <Slide
     >
 {
         images.map(image=>{
