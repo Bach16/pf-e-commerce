@@ -7,6 +7,7 @@ import ProductSlideShow from "../../components/products/ProductSlideShow"
 import 'react-slideshow-image/dist/styles.css';
 import ItemCounter from "../../components/ui/ItemCounter"
 import SizeSelector from "../../components/products/SizeSelector"
+import { ShopLayout } from "../../components/layouts"
 
 const images = [
   "https://dbdzm869oupei.cloudfront.net/img/t-shirts/large/63892.jpg","https://dbdzm869oupei.cloudfront.net/img/t-shirts/large/63892.jpg"
@@ -18,8 +19,7 @@ const sizes = [
 
 const ProductPage = () => {
   return (
-    <>
-      <h1>navbar</h1> {/* -----> implementar Layout */}
+      <ShopLayout title="titulo del producto" pageDescription="descripcion del producto">
       <Grid container spacing={3}>
         
         <Grid item xs={12} sm ={7} >
@@ -56,7 +56,7 @@ const ProductPage = () => {
         </Grid>
 
       </Grid>
-    </>
+      </ShopLayout>
   )
 }
 
