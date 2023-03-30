@@ -41,7 +41,7 @@ export const NavBar = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' ? onSearchTerm() : null}
                         type='text'
-                        placeholder="Buscar..."
+                        placeholder="Search..."
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
