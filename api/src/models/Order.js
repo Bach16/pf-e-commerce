@@ -16,14 +16,14 @@ module.exports = (sequelize) => {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            email_addres: {
+            email_address: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
                     isEmail: true
                 },
             },
-            shipping_addres: {
+            shipping_address: {
                 type: DataTypes.STRING,
                 allowNull: false,
 
