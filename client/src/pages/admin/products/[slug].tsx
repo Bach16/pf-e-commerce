@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { GetServerSideProps } from 'next'
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
+import { AdminLayout } from '../../../components/layouts';
 
 
 const validTypes  = ['shirts','pants','hoodies','hats']
@@ -21,7 +22,11 @@ const ProductAdminPage = ({ product }) => {
 
     
     return (
-        <> {/* -----------------------> crear Admin Layout */}
+        <AdminLayout
+         title={'Producto'}
+         subTitle={`Editando: ${product ? product.title : "producto"}`}
+         icon={<DriveFileRenameOutline/>}
+         > 
             <form>
                 <Box display='flex' justifyContent='end' sx={{ mb: 1 }}>
                     <Button 
@@ -230,7 +235,7 @@ const ProductAdminPage = ({ product }) => {
 
                 </Grid>
             </form>
-        </> /* -----------------------> crear Admin Layout */
+        </AdminLayout>
     )
 }
 
