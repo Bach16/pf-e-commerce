@@ -23,8 +23,12 @@ export const ShopLayout:FC<Props> = ({children, title, pageDescription, imageFul
 
     <SideMenu/>
 
-    <main>
-        {children}
+    <main style={{
+            margin: '60px auto',
+            maxWidth: '1440px',
+            padding: '0px 20px'
+        }}>
+            { children }
     </main>
 
     <footer>
