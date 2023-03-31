@@ -56,8 +56,45 @@ const getIdProduct = async (req, res) => {
     .catch((error) => res.status(500).json({ message: `${error}` }));
 };
 
+const putProduct = async (req, res) => {
+  const { id } = req.params;
+
+  const { trademark, stock, price, size, description, type, categorie } =
+    req.body;
+
+  productSchema
+    .updateOne(
+      { _id: id },
+      {
+        $set: {
+          trademark,
+          stock,
+          price,
+          size,
+          description,
+          type,
+          categorie,
+        },
+      }
+    )
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+};
+
+const deleteProduct = async (req, res) => {
+  const { active } = req.body;
+  const { id } = req.params;
+
+  productSchema
+    .updateOne({ _id: id }, { $set: { active } })
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ message: `${error} ` }));
+};
+
 module.exports = {
   getProduct,
   getIdProduct,
   postProduct,
+  putProduct,
+  deleteProduct,
 };
