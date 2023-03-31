@@ -3,6 +3,6 @@ const router = Router();
 
 const productRouter = require("./Product");
 
-router.use("/product", productRouter);
+router.use("/cloth", productRouter);
 
 module.exports = router;
