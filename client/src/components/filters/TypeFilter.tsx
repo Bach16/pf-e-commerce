@@ -11,16 +11,15 @@ interface TypeFilterProps {
     const dispatch = useDispatch();
     const filterState = useSelector((state: RootState) => state.filter);
   
-    const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleTypeChange = (event) => {
       dispatch(setType(event.target.value));
     };
-  console.log(filterState.type);
   
     return (
       <>
         <label>
           Type:
-          <select value={filterState.type} onChange={handleTypeChange}>
+          <select value={filterState.type} onChange={(event)=>handleTypeChange}>
             <option value="">All</option>
             {types.map((type) => (
               <option key={type} value={type}>
