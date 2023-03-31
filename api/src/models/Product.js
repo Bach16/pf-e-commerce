@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, Model } from "mongoose";
+const { Schema, model, Model } = require("mongoose");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
