@@ -27,7 +27,7 @@ export const NavBar = () => {
     }
   return (
     <AppBar >
-        <Toolbar >
+        <Toolbar>
             <NextLink  href='/' passHref>
                 <Link sx={{pb:1}}>
                 <Typography variant='h6' color='black'>E-Commerce</Typography>
