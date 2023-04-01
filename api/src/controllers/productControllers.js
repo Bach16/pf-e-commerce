@@ -60,7 +60,7 @@ const getTradeMarkProduct = async (req, res) => {
   const { trademark } = req.params;
 
   productSchema
-    .findBy(trademark)
+    // .findOne(where: { trademark: trademark },)
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ message: `${error}` }));
 };
