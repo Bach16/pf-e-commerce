@@ -56,6 +56,15 @@ const getIdProduct = async (req, res) => {
     .catch((error) => res.status(500).json({ message: `${error}` }));
 };
 
+const getTradeMarkProduct = async (req, res) => {
+  const { trademark } = req.params;
+
+  productSchema
+    .findBy(trademark)
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ message: `${error}` }));
+};
+
 const putProduct = async (req, res) => {
   const { id } = req.params;
 
@@ -97,4 +106,5 @@ module.exports = {
   postProduct,
   putProduct,
   deleteProduct,
+  getTradeMarkProduct,
 };
