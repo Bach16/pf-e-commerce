@@ -24,6 +24,11 @@ const consumerSchema = mongoose.Schema(
       unique: true,
       minLength: 9,
     },
+    roll: {
+      type: String,
+      enum: ["admin", "user", "superAdmin"],
+      default: "user",
+    },
   },
   { timestamps: true }
 );
