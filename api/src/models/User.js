@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const consumerSchema = mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -33,7 +33,7 @@ const consumerSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Consumer", consumerSchema);
+module.exports = mongoose.model("User", userSchema);
 // const { DataTypes } = require("sequelize");
 // // Exportamos una funcion que define el modelo
 // // Luego le injectamos la conexion a sequelize.
