@@ -1,37 +1,46 @@
 const mongoose = require("mongoose");
 
-const orderSchema = mongoose.Schema({
-  id_pay: {
-    type: String,
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    country: {
+      type: String,
+      ref: "Location",
+    },
+    addres: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      unique: true,
+      minLength: 9,
+    },
+    roll: {
+      type: String,
+      enum: ["admin", "user", "superAdmin"],
+      default: "user",
+    },
   },
-  products: {
-    type: Array,
-  },
-  payer: {
-    type: Array,
-  },
-  status: {
-    type: String,
-    enum: ["delivered", "undelivered"],
-    default: "undelivered",
-  },
-  email: {
-    type: String,
-  },
-  date: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Order", orderSchema);
-
+module.exports = mongoose.model("User", userSchema);
 // const { DataTypes } = require("sequelize");
 // // Exportamos una funcion que define el modelo
 // // Luego le injectamos la conexion a sequelize.
 
 // module.exports = (sequelize) => {
 //     sequelize.define(
-//         "order",
+//         "consumer",
 //         {
 //             id: {
 //                 type: DataTypes.UUID,
@@ -39,30 +48,31 @@ module.exports = mongoose.model("Order", orderSchema);
 //                 allowNull: false,
 //                 primaryKey: true,
 //               },
-//             amount: {
-//                 type: DataTypes.INTEGER,
-//                 allowNull: false
-//             },
-//             email_addres: {
+//             email: {
 //                 type: DataTypes.STRING,
 //                 allowNull: false,
 //                 validate: {
 //                     isEmail: true
 //                 },
+//                 unique: true
 //             },
-//             shipping_addres: {
+//             addres: {
 //                 type: DataTypes.STRING,
 //                 allowNull: false,
 
 //             },
-//             date: {
+//             phone: {
+//                 type: DataTypes.INTEGER,
+//                 allowNull: false
+//             },
+//             country: {
 //                 type: DataTypes.STRING,
 //                 allowNull: false
 //             },
-//             state: {
+//             name: {
 //                 type: DataTypes.STRING,
-//                 allowNull: false
-//             },
+//                 allowNull: false,
+//               },
 
 //         },{ timestamps: false }
 //         )
