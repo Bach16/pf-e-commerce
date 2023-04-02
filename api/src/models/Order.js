@@ -1,6 +1,4 @@
-const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const mongoose = require("mongoose");
 
 module.exports = (sequelize) => {
     sequelize.define(
@@ -36,7 +34,3 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-
-        },{ timestamps: false }
-        )
-}

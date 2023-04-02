@@ -1,26 +1,26 @@
 const axios = require("axios");
 const productSchema = require("../models/Product");
 
-const getProduct = async (req, res) => {
-  const { model } = req.query;
-  const product = await productSchema.find();
+// const getProduct = async (req, res) => {
+//   const { model } = req.query;
+//   const product = await productSchema.find();
 
-  try {
-    if (model) {
-      let productModel = product.filter((prod) =>
-        prod.model.toLowerCase().includes(model.toLowerCase())
-      );
+//   try {
+//     if (model) {
+//       let productModel = product.filter((prod) =>
+//         prod.model.toLowerCase().includes(model.toLowerCase())
+//       );
 
-      productModel.length
-        ? res.status(200).json(productModel)
-        : res.status(201).json("Not found");
-    } else {
-      res.status(200).json(product);
-    }
-  } catch (error) {
-    res.send(`Error ${error}`);
-  }
-};
+//       productModel.length
+//         ? res.status(200).json(productModel)
+//         : res.status(201).json("Not found");
+//     } else {
+//       res.status(200).json(product);
+//     }
+//   } catch (error) {
+//     res.send(`Error ${error}`);
+//   }
+// };
 
 const postProduct = async (req, res) => {
   let { trademark, stock, price, size, description, type, categorie } =
@@ -54,6 +54,42 @@ const getIdProduct = async (req, res) => {
     .findById(id)
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ message: `${error}` }));
+};
+
+const getTradeMarkProduct = async (req, res) => {
+  const trademark = req.query.trademark;
+  const { model } = req.query;
+  const product = await productSchema.find();
+  try {
+    if (trademark) {
+      const productSelected = product.filter((product) =>
+        product.trademark.toLowerCase().includes(trademark.toLowerCase())
+      );
+      if (productSelected.length) {
+        return res.status(200).send(productSelected);
+      } else {
+        return res.status(404).send({ error: "Product not found." });
+      }
+    } else {
+      try {
+        if (model) {
+          let productModel = product.filter((prod) =>
+            prod.model.toLowerCase().includes(model.toLowerCase())
+          );
+
+          productModel.length
+            ? res.status(200).json(productModel)
+            : res.status(201).json("Not found");
+        } else {
+          res.status(200).json(product);
+        }
+      } catch (error) {
+        res.send(`Error ${error}`);
+      }
+    }
+  } catch (error) {
+    res.status(404).send({ error: "Product not found" });
+  }
 };
 
 const putProduct = async (req, res) => {
@@ -92,9 +128,10 @@ const deleteProduct = async (req, res) => {
 };
 
 module.exports = {
-  getProduct,
+  // getProduct,
   getIdProduct,
   postProduct,
   putProduct,
   deleteProduct,
+  getTradeMarkProduct,
 };

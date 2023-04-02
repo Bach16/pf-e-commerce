@@ -6,6 +6,7 @@ const {
   postProduct,
   putProduct,
   deleteProduct,
+  getTradeMarkProduct,
 } = require("../controllers/productControllers");
 
 router.post("/", (req, res) => {
@@ -13,12 +14,16 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  getProduct(req, res);
+  getTradeMarkProduct(req, res);
 });
 
-router.get("/product/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   getIdProduct(req, res);
 });
+
+// router.get("/:trademark", (req, res) => {
+//   getTradeMarkProduct(req, res);
+// });
 
 router.put("/:id", (req, res) => {
   putProduct(req, res);

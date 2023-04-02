@@ -5,7 +5,7 @@ const { Schema, model, Model } = require("mongoose");
 const productSchema = new Schema(
   {
     trademark: { type: String, required: true },
-    image: [{ type: String, required: true }],
+    image: { type: String, required: true },
     stock: { type: Number, required: true, default: 0 },
     price: { type: Number, required: true, default: 0 },
     size: [
@@ -29,7 +29,7 @@ const productSchema = new Schema(
     categorie: {
       type: String,
       enum: {
-        values: ["men", "women", "kid", "unisex"],
+        values: ["men", "women", "kid"],
         message: "{VALUE} no es una categoria valida",
       },
     },
