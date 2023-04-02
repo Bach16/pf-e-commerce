@@ -33,6 +33,11 @@ const productSchema = new Schema(
         message: "{VALUE} no es una categoria valida",
       },
     },
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
   { timestamps: true }
 );

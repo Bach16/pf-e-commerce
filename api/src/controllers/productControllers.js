@@ -1,5 +1,6 @@
 const axios = require("axios");
 const productSchema = require("../models/Product");
+const { validateCreate } = require("../validators/Products");
 
 // const getProduct = async (req, res) => {
 //   const { model } = req.query;
@@ -23,28 +24,13 @@ const productSchema = require("../models/Product");
 // };
 
 const postProduct = async (req, res) => {
-  let { trademark, stock, price, size, description, type, categorie } =
-    req.body;
+  validateCreate;
+  const product = productSchema(req.body);
 
-  const productCreate = await productSchema.findOne({
-    where: { trademark: trademark },
-  });
-
-  if (productCreate) {
-    return res.status(403).send("The product already exist");
-  } else {
-    let ProductCreated = await productSchema.create({
-      trademark,
-      stock,
-      price,
-      size,
-      description,
-      type,
-      categorie,
-    });
-
-    return res.status(200).send("The product was successfully created");
-  }
+  product
+    .save()
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ message: `${error}` }));
 };
 
 const getIdProduct = async (req, res) => {
@@ -57,19 +43,23 @@ const getIdProduct = async (req, res) => {
 };
 
 const getTradeMarkProduct = async (req, res) => {
-  const trademark = req.query.trademark;
+  const name = req.query.name;
   const { model } = req.query;
   const product = await productSchema.find();
   try {
-    if (trademark) {
-      const productSelected = product.filter((product) =>
-        product.trademark.toLowerCase().includes(trademark.toLowerCase())
-      );
-      if (productSelected.length) {
-        return res.status(200).send(productSelected);
-      } else {
-        return res.status(404).send({ error: "Product not found." });
-      }
+    if (name) {
+      // const productSelected = product.filter((product) =>
+      //   product.name.toLowerCase().includes(name.toLowerCase())
+      // );
+      // if (productSelected.length) {
+      //   return res.status(200).send(productSelected);
+      // } else {
+      //   return res.status(404).send({ error: "Product not found." });
+      // }
+      productSchema
+        .findOne({ name: name })
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: `${error}` }));
     } else {
       try {
         if (model) {
