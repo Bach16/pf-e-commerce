@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    review: {
+      type: Array,
+      ref: "Review",
+    },
     phone: {
       type: String,
       unique: true,
