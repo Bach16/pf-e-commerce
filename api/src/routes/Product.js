@@ -9,15 +9,11 @@ const {
   getTradeMarkProduct,
 } = require("../controllers/productControllers");
 
-const { payProduct } = require("../controllers/mpController");
-
 router.post("/", (req, res) => {
   postProduct(req, res);
 });
 
-router.post("/buy", (req, res) => {
-  payProduct(req, res);
-});
+router.post("/buy", (req, res) => {});
 
 router.get("/", (req, res) => {
   getTradeMarkProduct(req, res);
