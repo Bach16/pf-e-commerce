@@ -22,5 +22,10 @@ const reviewSchema = mongoose.Schema({
     max: 5,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["answered", "pendding"],
+    default: "pendding",
+  },
 });
 module.exports = mongoose.model("Review", reviewSchema);
