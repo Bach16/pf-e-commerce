@@ -6,14 +6,16 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    lastname: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
     email: {
       type: String,
       required: true,
       unique: true,
-    },
-    country: {
-      type: String,
-      ref: "Location",
     },
     addres: {
       type: String,
