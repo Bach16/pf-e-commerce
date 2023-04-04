@@ -38,6 +38,10 @@ const productSchema = new Schema(
       required: true,
       unique: true,
     },
+    review: {
+      type: Array,
+      ref: "Review",
+    },
   },
   { timestamps: true }
 );

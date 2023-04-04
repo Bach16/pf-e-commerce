@@ -13,6 +13,8 @@ router.post("/", (req, res) => {
   postProduct(req, res);
 });
 
+router.post("/buy", (req, res) => {});
+
 router.get("/", (req, res) => {
   getTradeMarkProduct(req, res);
 });

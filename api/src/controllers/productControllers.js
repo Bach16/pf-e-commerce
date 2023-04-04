@@ -85,7 +85,7 @@ const getTradeMarkProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const { id } = req.params;
 
-  const { trademark, stock, price, size, description, type, categorie } =
+  const { trademark, stock, price, size, description, type, categorie, name } =
     req.body;
 
   productSchema
@@ -100,6 +100,7 @@ const putProduct = async (req, res) => {
           description,
           type,
           categorie,
+          name,
         },
       }
     )
@@ -108,11 +109,10 @@ const putProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  const { active } = req.body;
   const { id } = req.params;
 
   productSchema
-    .updateOne({ _id: id }, { $set: { active } })
+    .findOneAndDelete({ _id: id })
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ message: `${error} ` }));
 };
