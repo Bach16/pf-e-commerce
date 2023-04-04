@@ -13,17 +13,19 @@ router.post("/", (req, res) => {
   postProduct(req, res);
 });
 
+router.post("/buy", (req, res) => {});
+
 router.get("/", (req, res) => {
-  getProduct(req, res);
+  getTradeMarkProduct(req, res);
 });
 
 router.get("/:id", (req, res) => {
   getIdProduct(req, res);
 });
 
-router.get("/:trademark", (req, res) => {
-  getTradeMarkProduct(req, res);
-});
+// router.get("/:trademark", (req, res) => {
+//   getTradeMarkProduct(req, res);
+// });
 
 router.put("/:id", (req, res) => {
   putProduct(req, res);

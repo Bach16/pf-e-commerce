@@ -1,50 +1,36 @@
 const axios = require("axios");
 const productSchema = require("../models/Product");
+const { validateCreate } = require("../validators/Products");
 
-const getProduct = async (req, res) => {
-  const { model } = req.query;
-  const product = await productSchema.find();
+// const getProduct = async (req, res) => {
+//   const { model } = req.query;
+//   const product = await productSchema.find();
 
-  try {
-    if (model) {
-      let productModel = product.filter((prod) =>
-        prod.model.toLowerCase().includes(model.toLowerCase())
-      );
+//   try {
+//     if (model) {
+//       let productModel = product.filter((prod) =>
+//         prod.model.toLowerCase().includes(model.toLowerCase())
+//       );
 
-      productModel.length
-        ? res.status(200).json(productModel)
-        : res.status(201).json("Not found");
-    } else {
-      res.status(200).json(product);
-    }
-  } catch (error) {
-    res.send(`Error ${error}`);
-  }
-};
+//       productModel.length
+//         ? res.status(200).json(productModel)
+//         : res.status(201).json("Not found");
+//     } else {
+//       res.status(200).json(product);
+//     }
+//   } catch (error) {
+//     res.send(`Error ${error}`);
+//   }
+// };
 
 const postProduct = async (req, res) => {
-  let { trademark, stock, price, size, description, type, categorie } =
-    req.body;
+  validateCreate;
+  const product = productSchema(req.body);
 
-  const productCreate = await productSchema.findOne({
-    where: { trademark: trademark },
-  });
-
-  if (productCreate) {
-    return res.status(403).send("The product already exist");
-  } else {
-    let ProductCreated = await productSchema.create({
-      trademark,
-      stock,
-      price,
-      size,
-      description,
-      type,
-      categorie,
-    });
-
-    return res.status(200).send("The product was successfully created");
-  }
+  product
+    .save()
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ message: `${error}` }));
 };
 
 const getIdProduct = async (req, res) => {
@@ -57,18 +43,49 @@ const getIdProduct = async (req, res) => {
 };
 
 const getTradeMarkProduct = async (req, res) => {
-  const { trademark } = req.params;
+  const name = req.query.name;
+  const { model } = req.query;
+  const product = await productSchema.find();
+  try {
+    if (name) {
+      // const productSelected = product.filter((product) =>
+      //   product.name.toLowerCase().includes(name.toLowerCase())
+      // );
+      // if (productSelected.length) {
+      //   return res.status(200).send(productSelected);
+      // } else {
+      //   return res.status(404).send({ error: "Product not found." });
+      // }
+      productSchema
+        .findOne({ name: name })
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: `${error}` }));
+    } else {
+      try {
+        if (model) {
+          let productModel = product.filter((prod) =>
+            prod.model.toLowerCase().includes(model.toLowerCase())
+          );
 
-  productSchema
-    .findBy(trademark)
-    .then((data) => res.status(200).json(data))
-    .catch((error) => res.status(500).json({ message: `${error}` }));
+          productModel.length
+            ? res.status(200).json(productModel)
+            : res.status(201).json("Not found");
+        } else {
+          res.status(200).json(product);
+        }
+      } catch (error) {
+        res.send(`Error ${error}`);
+      }
+    }
+  } catch (error) {
+    res.status(404).send({ error: "Product not found" });
+  }
 };
 
 const putProduct = async (req, res) => {
   const { id } = req.params;
 
-  const { trademark, stock, price, size, description, type, categorie } =
+  const { trademark, stock, price, size, description, type, categorie, name } =
     req.body;
 
   productSchema
@@ -83,6 +100,7 @@ const putProduct = async (req, res) => {
           description,
           type,
           categorie,
+          name,
         },
       }
     )
@@ -91,17 +109,16 @@ const putProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  const { active } = req.body;
   const { id } = req.params;
 
   productSchema
-    .updateOne({ _id: id }, { $set: { active } })
+    .findOneAndDelete({ _id: id })
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ message: `${error} ` }));
 };
 
 module.exports = {
-  getProduct,
+  // getProduct,
   getIdProduct,
   postProduct,
   putProduct,
