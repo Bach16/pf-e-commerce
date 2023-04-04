@@ -109,7 +109,6 @@ const putProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  const { active } = req.body;
   const { id } = req.params;
 
   productSchema
