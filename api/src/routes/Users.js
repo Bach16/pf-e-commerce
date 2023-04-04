@@ -32,3 +32,5 @@ router.delete("/:id", async (req, res) => {
 router.post("/roll/:id", async (req, res) => {
   putRoll(req, res);
 });
+
+module.exports = router;
