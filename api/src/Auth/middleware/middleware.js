@@ -7,7 +7,6 @@ const router = express.Router();
 
 const authConfig = {
   domain: "dev-2llhwpnt06dhuqy3.us.auth0.com",
-  audience: "http://localhost:3000/",
   clientID: "i4gEbxcn35MZoagHLqzqXiRfLRTJRR4V",
   redirectUri: "http://localhost:3001/auth",
   responseType: "token ",
@@ -21,9 +20,8 @@ const checkJwt = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`,
   }),
-  audience: authConfig.audience,
   issuer: `https://${authConfig.domain}/`,
   algorithms: ["RS256"],
 });
 
-module.exports = router;
+module.exports = { router, checkJwt };

@@ -1,4 +1,4 @@
-import auth0 from "auth0-js";
+const auth0 = require("auth0-js");
 
 const auth0Config = {
   domain: "dev-2llhwpnt06dhuqy3.us.auth0.com",
@@ -9,3 +9,5 @@ const auth0Config = {
 };
 
 const auth0Client = new auth0.WebAuth(auth0Config);
+
+module.exports = { auth0Client };
