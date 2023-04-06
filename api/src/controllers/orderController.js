@@ -20,7 +20,7 @@ const postOrder = async (req, res) => {
     );
     const userCompra = orderSchema(shopping.data);
 
-    const newUserCompra = await new orderSchema({
+    const newUserCompra = await new Order({
       items: shopping.data.additional_info.items[0],
       id_pay: idData,
       date_approved: userCompra.date_approved,
@@ -30,6 +30,7 @@ const postOrder = async (req, res) => {
       status: userCompra.status,
       status_detail: userCompra.status_detail,
       email: shopping.data.external_reference,
+      transaction_amount: shopping.data.transaction_amount,
     });
     ///////////////////////////////////////////////////////////
     const saveCompra = await newUserCompra.save();

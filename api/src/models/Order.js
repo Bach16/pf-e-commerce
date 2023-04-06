@@ -33,6 +33,9 @@ const orderSchema = mongoose.Schema({
   email: {
     type: String,
   },
+  transaction_amount: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
