@@ -17,6 +17,14 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    country: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
     addres: {
       type: String,
       required: true,
@@ -24,6 +32,15 @@ const userSchema = mongoose.Schema(
     review: {
       type: Array,
       ref: "Review",
+    },
+    userOrder: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "userOrderSchema",
+      },
+    ],
+    order: {
+      type: Array,
     },
     phone: {
       type: String,

@@ -20,6 +20,8 @@ const postUser = async (req, res) => {
         "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png",
       lastname: user.lastname,
       phone: user.phone,
+      country: user.country,
+      city: user.city,
       addres: user.addres,
     });
 
@@ -64,7 +66,8 @@ const getUserById = async (req, res) => {
 const putUser = async (req, res) => {
   const { id } = req.params;
 
-  const { name, lastname, email, addres, phone, roll } = req.body;
+  const { name, lastname, email, addres, phone, roll, city, country } =
+    req.body;
 
   userSchema
     .updateOne(
@@ -77,6 +80,8 @@ const putUser = async (req, res) => {
           addres,
           phone,
           roll,
+          city,
+          country,
         },
       }
     )

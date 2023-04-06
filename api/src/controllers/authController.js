@@ -1,13 +1,15 @@
 const checkJwt = require("../Auth/middleware/middleware");
+const { auth0Client } = require("../Auth/configAuth/configAuth");
+const auth0 = require("auth0-js");
 
 const controllerAuth = async (req, res) => {
   const { redirectUrl } = req.query;
   const loginOptions = {
-    state: redurectUrl ? JSON.stringify({ redirectUrl }) : undefined,
+    state: redirectUrl ? JSON.stringify({ redirectUrl }) : undefined,
   };
 
   checkJwt;
-  const userId = req.user.sub;
+  //const userId = req.user.sub;
   auth0Client.authorize(loginOptions);
 };
 
@@ -37,4 +39,10 @@ const logOut = (req, res) => {
   res.clearCookie("id_token");
   res.clearCookie("expires_at");
   res.redirect("/");
+};
+
+module.exports = {
+  controllerAuth,
+  tokenValidator,
+  logOut,
 };
