@@ -25,6 +25,15 @@ const userSchema = mongoose.Schema(
       type: Array,
       ref: "Review",
     },
+    userOrder: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "userOrderSchema",
+      },
+    ],
+    order: {
+      type: Array,
+    },
     phone: {
       type: String,
       unique: true,

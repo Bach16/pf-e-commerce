@@ -33,10 +33,6 @@ const orderSchema = mongoose.Schema({
   email: {
     type: String,
   },
-  date: {
-    type: String,
-  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
-
