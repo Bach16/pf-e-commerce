@@ -52,6 +52,11 @@ const userSchema = mongoose.Schema(
       enum: ["admin", "user", "superAdmin"],
       default: "user",
     },
+    loading: {
+      type: String,
+      enum: ["valid", "invalid"],
+      default: "invalid",
+    },
   },
   { timestamps: true }
 );
