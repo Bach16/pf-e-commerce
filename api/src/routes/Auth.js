@@ -7,6 +7,8 @@ const {
 
 const router = express.Router();
 
+console.log(tokenValidator);
+
 router.get("/login", (req, res) => {
   controllerAuth(req, res);
 });

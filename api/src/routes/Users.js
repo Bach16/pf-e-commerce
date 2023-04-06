@@ -7,10 +7,20 @@ const {
   putUser,
   deleteUser,
   putRoll,
+  postUserLoading,
+  postUserSignoff,
 } = require("../controllers/usersController");
 
 router.post("/", (req, res) => {
   postUser(req, res);
+});
+
+router.post("/loading", (req, res) => {
+  postUserLoading(req, res);
+});
+
+router.post("/signoff", (req, res) => {
+  postUserSignoff;
 });
 
 router.get("/", (req, res) => {
