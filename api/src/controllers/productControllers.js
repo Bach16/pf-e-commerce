@@ -85,8 +85,16 @@ const getTradeMarkProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const { id } = req.params;
 
-  const { trademark, stock, price, size, description, type, categorie, name } =
-    req.body;
+  const {
+    trademark,
+    stock,
+    price,
+    tallas,
+    description,
+    type,
+    categorie,
+    name,
+  } = req.body;
 
   productSchema
     .updateOne(
@@ -96,7 +104,7 @@ const putProduct = async (req, res) => {
           trademark,
           stock,
           price,
-          size,
+          tallas,
           description,
           type,
           categorie,
