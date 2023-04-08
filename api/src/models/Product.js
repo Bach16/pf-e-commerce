@@ -6,15 +6,12 @@ const productSchema = new Schema(
   {
     trademark: { type: String, required: true },
     image: { type: String, required: true },
-    stock: { type: Number, required: true, default: 0 },
+    //stock: { type: Number, required: true, default: 0 },
     price: { type: Number, required: true, default: 0 },
-    size: [
+    tallas: [
       {
-        type: String,
-        enum: {
-          values: ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
-          message: "{VALUE} no es un tamaño valido",
-        },
+        talla: { type: mongoose.Schema.Types.ObjectId, ref: "Talla" },
+        stock: { type: Number, required: true },
       },
     ],
     description: { type: String, required: true },
