@@ -10,7 +10,7 @@ const productSchema = new Schema(
     price: { type: Number, required: true, default: 0 },
     tallas: [
       {
-        talla: { type: mongoose.Schema.Types.ObjectId, ref: "Talla" },
+        talla: { type: String, ref: "Talla" },
         stock: { type: Number, required: true },
       },
     ],
