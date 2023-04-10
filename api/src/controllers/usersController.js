@@ -7,9 +7,9 @@ const { eMail } = require("../nodemailer/mailer");
 
 const postUser = async (req, res) => {
   try {
-    validateCreate;
+    //validateCreate;
 
-    const users = await User.find({});
+    //const users = await User.find({});
     const user = userSchema(req.body);
 
     const newUser = await new User({
@@ -19,15 +19,19 @@ const postUser = async (req, res) => {
         user.image ||
         "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png",
       lastname: user.lastname,
-      phone: user.phone,
-      country: user.country,
-      city: user.city,
-      addres: user.addres,
+      phone: user.phone || "",
+      country: user.country || "",
+      city: user.city || "",
+      addres: user.addres || "",
     });
 
-    const saveUser = await newUser.save();
+    //const saveUser = await newUser.save();
 
-    res.status(200).json(saveUser);
+    user
+      .save()
+      .then((data) => res.status(200).json(data))
+      .catch((error) => res.status(500).json({ message: `${error}` }));
+    // res.status(200).json(saveUser);
     eMail(user.email);
   } catch (error) {
     res.status(500).send(`{messaje: ${error}}`);
