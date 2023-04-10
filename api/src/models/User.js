@@ -41,8 +41,7 @@ const userSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      unique: true,
-      minLength: 9,
+      unique: false,
     },
     roll: {
       type: String,
