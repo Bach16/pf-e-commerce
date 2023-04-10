@@ -19,22 +19,18 @@ const postUser = async (req, res) => {
         user.image ||
         "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png",
       lastname: user.lastname,
-      phone: user.phone || "",
-      country: user.country || "",
-      city: user.city || "",
-      addres: user.addres || "",
     });
 
     //const saveUser = await newUser.save();
-
-    user
+    console.log(user);
+    newUser
       .save()
       .then((data) => res.status(200).json(data))
       .catch((error) => res.status(500).json({ message: `${error}` }));
     // res.status(200).json(saveUser);
     eMail(user.email);
   } catch (error) {
-    res.status(500).send(`{messaje: ${error}}`);
+    res.status(500).send(`{messaje del catch: ${error}}`);
   }
 };
 
