@@ -8,27 +8,29 @@ const { eMail } = require("../nodemailer/mailer");
 const postUser = async (req, res) => {
   try {
     //validateCreate;
-
-    //const users = await User.find({});
     const user = userSchema(req.body);
+    const users = await User.find({ email: user.email });
+    if (users.length) {
+      res.status(403).send("The email already exist");
+    } else {
+      const newUser = await new User({
+        name: user.name,
+        email: user.email,
+        image:
+          user.image ||
+          "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png",
+        lastname: user.lastname,
+      });
 
-    const newUser = await new User({
-      name: user.name,
-      email: user.email,
-      image:
-        user.image ||
-        "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png",
-      lastname: user.lastname,
-    });
-
-    //const saveUser = await newUser.save();
-    console.log(user);
-    newUser
-      .save()
-      .then((data) => res.status(200).json(data))
-      .catch((error) => res.status(500).json({ message: `${error}` }));
-    // res.status(200).json(saveUser);
-    eMail(user.email);
+      //const saveUser = await newUser.save();
+      console.log(user);
+      newUser
+        .save()
+        .then((data) => res.status(200).json(data))
+        .catch((error) => res.status(500).json({ message: `${error}` }));
+      // res.status(200).json(saveUser);
+      eMail(user.email);
+    }
   } catch (error) {
     res.status(500).send(`{messaje del catch: ${error}}`);
   }
